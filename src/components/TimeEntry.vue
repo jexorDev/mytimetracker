@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import * as dayjs from 'dayjs'
+import dayjs from 'dayjs'
 import {ref, computed} from 'vue';
 import type {TimeEntryRecord} from "@/interfaces/TimeEntry";
 
@@ -12,8 +12,8 @@ import type {TimeEntryRecord} from "@/interfaces/TimeEntry";
 
     function createEntry() {
         entries.value.push({
-            start: dayjs(selectedDate.value).hour(entryStart.value.split(":")[0]).minute(entryStart.value.split(":")[1]).format("MM/DD/YYYY HH:mm"),
-            end: entryEnd.value === "" ? "" : dayjs(selectedDate.value).hour(entryEnd.value.split(":")[0]).minute(entryEnd.value.split(":")[1]).format("MM/DD/YYYY HH:mm")
+            start: dayjs(selectedDate.value).hour(parseInt(entryStart.value.split(":")[0])).minute(parseInt(entryStart.value.split(":")[1])).format("MM/DD/YYYY HH:mm"),
+            end: entryEnd.value === "" ? "" : dayjs(selectedDate.value).hour(parseInt(entryEnd.value.split(":")[0])).minute(parseInt(entryEnd.value.split(":")[1])).format("MM/DD/YYYY HH:mm")
         })
     }
 
