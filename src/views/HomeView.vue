@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import TimeEntry from "@/components/TimeEntry.vue";
+
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <v-container>
+    <TimeEntry />
+
+  </v-container>
 </template>
