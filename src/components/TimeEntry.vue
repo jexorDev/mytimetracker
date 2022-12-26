@@ -85,37 +85,58 @@ dayjs.extend(weekOfYear)
 
 </script>
 <template>
-<div>
+<v-container>
     <v-row>
-        <v-col :cols="2">
-<v-btn @click="prevClick">Prev</v-btn>
+        <v-col>
+            <div class="text-overline">Today</div>
+            <div v-text="dayHoursTotal"></div>
         </v-col>
-        <v-col :cols="8">
-    <div class="text-overline">Entry Date</div>
-    <v-text-field v-model="selectedDate"></v-text-field>
-
+        <v-col>
+            <div class="text-overline">This Week</div>
+            <div v-text="weekHoursTotal"></div>
         </v-col>
-        <v-col :cols="2">
-<v-btn @click="nextClick">Next</v-btn>
-        </v-col>
-
     </v-row>
     <v-row>
         <v-col>
-    <div class="text-overline">Start Time</div>
+            
+            <v-divider class="mx-2"></v-divider>
+        </v-col>
+    </v-row>
+    <v-row>
+        <v-col >
+
+                <div >
+                    <div class="text-overline">Entry Date</div>
+                        <v-text-field v-model="selectedDate" >
+                            <template v-slot:prepend-inner>
+     <v-btn @click="prevClick" variant="text">Prev</v-btn>
+    </template>
+                            <template v-slot:append-inner>
+     <v-btn @click="nextClick" variant="text">Next</v-btn>
+    </template>
+</v-text-field>
+                    </div>
+                
+        </v-col>
+
+        <v-col>
+    <div class="text-overline">Start Time (Required)</div>
     <v-text-field v-model="entryStart"></v-text-field>
         </v-col>
 <v-col>
-<div class="text-overline">End Time</div>
+<div class="text-overline">End Time (Optional)</div>
     <v-text-field v-model="entryEnd"></v-text-field>
 </v-col>
+        <v-col>
+
+    <v-btn color="primary" class="mt-10" @click="createEntry">Enter</v-btn>
+        </v-col>
+
     </v-row>
     <v-row>
         <v-col>
-
-    <v-btn color="primary" @click="createEntry">Start</v-btn>
+            <v-divider class="mt-2"></v-divider>
         </v-col>
-
     </v-row>
     <v-row>
         <v-col>
@@ -143,9 +164,9 @@ dayjs.extend(weekOfYear)
         :key="entry.start"
       >
         <td>{{ entry.start }}</td>
-        <td>{{ entry.end }}</td>
+        <td>{{ entry.end }}<v-btn v-show="entry.end === ''" @click="endEntry(entry)">End</v-btn></td>
         <td>
-            <v-btn v-show="entry.end === ''" @click="endEntry(entry)">End</v-btn>
+            <v-btn>Edit</v-btn>
         </td>
         <td>
             <v-btn @click="deleteEntry(entry)">Delete</v-btn>
@@ -156,18 +177,7 @@ dayjs.extend(weekOfYear)
 
         </v-col>
     </v-row>
-    <v-row>
-        <v-col>
-            <div class="text-overline">Today</div>
-            <div v-text="dayHoursTotal"></div>
-        </v-col>
-    </v-row>
-    <v-row>
-        <v-col>
-            <div class="text-overline">This Week</div>
-            <div v-text="weekHoursTotal"></div>
-        </v-col>
-    </v-row>
+   
     
-</div>
+</v-container>
 </template>

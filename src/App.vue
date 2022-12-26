@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
 import {onMounted} from 'vue'
 import {userEntriesStore} from "@/stores/entries"
+import TimeEntry from "@/components/TimeEntry.vue";
 onMounted(() => {
   const store = userEntriesStore();
   store.refresh();
@@ -22,9 +22,10 @@ onMounted(() => {
   
 </v-row>
 </v-container> -->
-<v-container>
-
-  <RouterView />
-</v-container>
+<v-layout>
+  <v-main>
+    <TimeEntry />
+  </v-main>
+</v-layout>
 
 </template>
